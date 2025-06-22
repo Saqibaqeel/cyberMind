@@ -128,6 +128,9 @@ const searchJob = async (req, res) =>  {
     return res.status(500).json({ msg: 'seach failed' });
   }
 };
+const fuck = async (req, res) => {
+res.send("func you")
+};
 
 
 
@@ -135,6 +138,7 @@ module.exports = {
   createJob,
   getJobById,
   searchJob,
+  fuck,
 
 
   getAlljobs
