@@ -48,7 +48,6 @@ const JobFilter = () => {
 
       <div className="vr d-none d-md-block" />
 
-      {/* 📍 Location */}
       <div className="d-flex align-items-center gap-2">
         <i className="bi bi-geo-alt"></i>
         <select
@@ -68,7 +67,7 @@ const JobFilter = () => {
 
       <div className="vr d-none d-md-block" />
 
-      {/* 👨‍💼 Job Type */}
+ 
       <div className="d-flex align-items-center gap-2">
         <i className="bi bi-person"></i>
         <select
@@ -87,7 +86,7 @@ const JobFilter = () => {
 
       <div className="vr d-none d-md-block" />
 
-      {/* 💰 Salary Filter (Single Slider) */}
+
       <div className="d-flex align-items-center gap-3">
         <div className="text-nowrap">
           <div className="text-muted small">Max Salary Per Month</div>
@@ -106,7 +105,7 @@ const JobFilter = () => {
         />
       </div>
 
-      {/* ❌ Clear All */}
+   
       {isFilterActive && (
         <button
           className="btn btn-link text-danger fw-semibold"

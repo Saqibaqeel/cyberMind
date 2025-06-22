@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import useJob from '../store/useJob';
 import JobCardSkeleton from '../pages/JobCardSkeleton';
+import NoJobFound from '../pages/NoJobFound';
 
 const JobCard = () => {
-  const { jobs, isLoading, isError, fetchJobs } = useJob();
+  const { jobs, isLoading, isError, fetchJobs,clearFilters } = useJob();
   console.log('Jobs:', jobs);
 
   useEffect(() => {
@@ -19,6 +20,9 @@ const JobCard = () => {
         
       </div>
     );
+  }
+  if(!jobs || jobs.length === 0) {
+    return <NoJobFound clearFilters={clearFilters}/>;
   }
 
   if (isError) {
