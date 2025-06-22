@@ -24,10 +24,9 @@ app.use(cookieParser());
  
 
 app.use(cors({
-  origin: ['http://localhost:3000', 'https://your-frontend-url.com'],
+  origin: 'https://jobmanage-b074.onrender.com', 
   credentials: true
 }));
-
 
 app.use('/job',jobRoutes);
 app.get('/ping',(req,res)=>{
