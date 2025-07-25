@@ -93,7 +93,7 @@ const JobCard = () => {
             }}
           >
             <span className="d-flex align-items-center gap-1">
-              <img src="Vector.png" alt="Experience Icon" style={{ width: '16px', height: '16px' }} />
+              <img src="./Vector.png" alt="Experience Icon" style={{ width: '16px', height: '16px' }} />
               1–3 yr Exp
             </span>
             <span className="d-flex align-items-center gap-1">
@@ -101,7 +101,7 @@ const JobCard = () => {
               {job.location}
             </span>
             <span className="d-flex align-items-center gap-1">
-              <img src="sal.png" alt="Salary Icon" style={{ width: '16px', height: '16px' }} />
+              <img src="./sal.png" alt="Salary Icon" style={{ width: '16px', height: '16px' }} />
               {Math.floor(job.salaryRange.max / 100000)} LPA
             </span>
           </div>

@@ -25,7 +25,7 @@ const btnStyle = {
         {/* Logo */}
         <a className="navbar-brand" href="#">
           <img
-            src="logo.png"
+            src="./logo.png"
             alt="logo"
             style={logoStyle}
           />
