@@ -9,7 +9,6 @@ const useJob = create((set, get) => ({
   isLoading: false,
   isError: false,
 
-
   filters: {
     location: '',
     jobType: '',
@@ -39,7 +38,6 @@ const useJob = create((set, get) => ({
     }
   },
 
-  // Set individual filter
   setFilter: (key, value) => {
     set(state => ({
       filters: { ...state.filters, [key]: value }
@@ -47,7 +45,6 @@ const useJob = create((set, get) => ({
     get().applyFilters();
   },
 
-  // Clear all filters
   clearFilters: () => {
     set({
       filters: {
@@ -60,27 +57,24 @@ const useJob = create((set, get) => ({
     get().applyFilters();
   },
 
-  // Apply filters with salary check
   applyFilters: () => {
     const { originalJobs, filters } = get();
     
     const filtered = originalJobs.filter(job => {
-      // Location check
       const matchLocation = filters.location 
         ? job.location.toLowerCase().includes(filters.location.toLowerCase())
         : true;
-      
-      // Job type check
+
       const matchJobType = filters.jobType
         ? job.jobType === filters.jobType
         : true;
 
-      // Salary check: job's min salary <= selected max salary
       const matchSalary = job.salaryRange.min <= filters.maxSalary;
 
-      // Title search
       const matchTitle = filters.title
-        ? job.title.toLowerCase().includes(filters.title.toLowerCase())
+        ? job.jobTitle.toLowerCase().includes(filters.title.toLowerCase()) ||
+          job.companyName.toLowerCase().includes(filters.title.toLowerCase()) ||
+          job.jobDescription.toLowerCase().includes(filters.title.toLowerCase())
         : true;
 
       return matchLocation && matchJobType && matchSalary && matchTitle;
@@ -89,7 +83,6 @@ const useJob = create((set, get) => ({
     set({ jobs: filtered });
   },
 
-  // Debounced filtering for search
   debouncedApply: null,
   scheduleApply: () => {
     if (!get().debouncedApply) {

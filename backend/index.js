@@ -22,11 +22,11 @@ app.use(express.json());
 app.use(cookieParser());
 
  
-
 app.use(cors({
-  origin: 'https://jobmanage-b074.onrender.com', 
-  credentials: true
+  origin: 'http://localhost:5173',  // <-- your React/Vite URL
+  credentials: true,                // <-- allow cookies & auth headers
 }));
+
 
 app.use('/job',jobRoutes);
 app.get('/ping',(req,res)=>{

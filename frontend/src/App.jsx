@@ -6,6 +6,7 @@ import Navbar from './pages/Navbar'
 import CreateJobModal from './pages/CreateJobModal'
 import React, { useState } from 'react';
 import { Toaster } from 'react-hot-toast';
+import Form from './componenets/Form'
 
 function App() {
   const [showModal, setShowModal] = useState(false);
@@ -20,6 +21,7 @@ function App() {
       <CreateJobModal show={showModal} handleClose={handleCloseModal} />
       <JobFilter/>
       <JobCard/>
+    
       <Toaster position="top-right" toastOptions={{ duration: 3000 }} />
     </>
   )

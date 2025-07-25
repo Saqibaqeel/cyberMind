@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Modal, Button, Form, Row, Col } from 'react-bootstrap';
+import { Modal, Form, Row, Col } from 'react-bootstrap';
 import useJob from '../store/useJob';
 import { toast } from 'react-hot-toast';
 
@@ -37,15 +37,25 @@ const CreateJobModal = ({ show, handleClose }) => {
   };
 
   const handleSubmit = async () => {
+    const {
+      jobTitle,
+      companyName,
+      location,
+      jobType,
+      salaryRange,
+      applicationDeadline,
+      jobDescription,
+    } = jobData;
+
     if (
-      !jobData.jobTitle ||
-      !jobData.companyName ||
-      !jobData.location ||
-      !jobData.jobType ||
-      !jobData.salaryRange.min ||
-      !jobData.salaryRange.max ||
-      !jobData.applicationDeadline ||
-      !jobData.jobDescription
+      !jobTitle ||
+      !companyName ||
+      !location ||
+      !jobType ||
+      !salaryRange.min ||
+      !salaryRange.max ||
+      !applicationDeadline ||
+      !jobDescription
     ) {
       toast.error('Please fill in all required fields');
       return;
@@ -60,15 +70,76 @@ const CreateJobModal = ({ show, handleClose }) => {
     }
   };
 
+  const inputStyle = {
+    width: '376px',
+    height: '58px',
+    borderRadius: '10px',
+    border: '1px solid rgba(34, 34, 34, 1)',
+  };
+
+  const styleRange = {
+    width: '183px',
+    height: '58px',
+    borderRadius: '10px',
+    border: '1px solid rgba(188, 188, 188, 1)',
+  };
+
+  const textAreaStyle = {
+    width: '768px',
+    height: '169px',
+    borderRadius: '10px',
+    border: '1px solid rgba(188, 188, 188, 1)',
+  };
+
+  const publishButtonStyle = {
+    width: '232px',
+    height: '59px',
+    borderRadius: '10px',
+    backgroundColor: '#007FFF',
+    color: '#FFFFFF',
+    border: 'none',
+    fontWeight: '600',
+    fontSize: '16px',
+    padding: '16px 60px',
+    boxShadow: '0px 0px 4px rgba(0, 0, 0, 0.25)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '10px',
+    cursor: 'pointer',
+    marginLeft: '245px',
+  };
+
+  const saveDraftButtonStyle = {
+    width: '232px',
+    height: '59px',
+    borderRadius: '10px',
+    backgroundColor: '#FFFFFF',
+    color: '#000000',
+    border: '1.5px solid rgba(34, 34, 34, 1)',
+    fontWeight: '600',
+    fontSize: '16px',
+    padding: '16px 60px',
+    boxShadow: '0px 0px 4px rgba(0, 0, 0, 0.25)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '10px',
+    cursor: 'pointer',
+  };
+
   return (
-    <Modal show={show} onHide={handleClose} centered size="lg" className="rounded-4">
+    <Modal show={show} onHide={handleClose} centered size="lg" contentClassName="overflow-hidden">
       <Modal.Body className="p-4">
-        <h4 className="fw-semibold mb-4">Create Job Opening</h4>
+        <h4 className="fw-semibold mb-4 text-center" style={{ fontFamily: 'Satoshi Variable', fontWeight: 700, fontSize: '24px' }}>
+          Create Job Opening
+        </h4>
         <Form>
           <Row className="mb-3">
-            <Col xs={12} md={6} className="mb-3 mb-md-0">
+            <Col md={6} className="mb-3">
               <Form.Label>Job Title</Form.Label>
               <Form.Control
+                style={inputStyle}
                 type="text"
                 name="jobTitle"
                 value={jobData.jobTitle}
@@ -76,9 +147,10 @@ const CreateJobModal = ({ show, handleClose }) => {
                 placeholder="Full Stack Developer"
               />
             </Col>
-            <Col xs={12} md={6}>
+            <Col md={6}>
               <Form.Label>Company Name</Form.Label>
               <Form.Control
+                style={inputStyle}
                 type="text"
                 name="companyName"
                 value={jobData.companyName}
@@ -89,18 +161,18 @@ const CreateJobModal = ({ show, handleClose }) => {
           </Row>
 
           <Row className="mb-3">
-            <Col xs={12} md={6} className="mb-3 mb-md-0">
+            <Col md={6} className="mb-3">
               <Form.Label>Location</Form.Label>
-              <Form.Select name="location" value={jobData.location} onChange={handleChange}>
+              <Form.Select name="location" value={jobData.location} onChange={handleChange} style={inputStyle}>
                 <option value="">Choose Preferred Location</option>
                 <option value="Hyderabad">Hyderabad</option>
                 <option value="Bangalore">Bangalore</option>
                 <option value="Remote">Remote</option>
               </Form.Select>
             </Col>
-            <Col xs={12} md={6}>
+            <Col md={6}>
               <Form.Label>Job Type</Form.Label>
-              <Form.Select name="jobType" value={jobData.jobType} onChange={handleChange}>
+              <Form.Select name="jobType" value={jobData.jobType} onChange={handleChange} style={inputStyle}>
                 <option value="">Select Type</option>
                 <option value="Full-time">Full-time</option>
                 <option value="Part-time">Part-time</option>
@@ -111,10 +183,11 @@ const CreateJobModal = ({ show, handleClose }) => {
           </Row>
 
           <Row className="mb-3">
-            <Col xs={12} md={6} className="mb-3 mb-md-0">
+            <Col md={6} className="mb-3">
               <Form.Label>Salary Range</Form.Label>
-              <div className="d-flex flex-column flex-sm-row gap-2">
+              <div className="d-flex gap-2">
                 <Form.Control
+                  style={styleRange}
                   type="number"
                   name="salaryMin"
                   value={jobData.salaryRange.min}
@@ -122,6 +195,7 @@ const CreateJobModal = ({ show, handleClose }) => {
                   placeholder="₹0"
                 />
                 <Form.Control
+                  style={styleRange}
                   type="number"
                   name="salaryMax"
                   value={jobData.salaryRange.max}
@@ -130,9 +204,10 @@ const CreateJobModal = ({ show, handleClose }) => {
                 />
               </div>
             </Col>
-            <Col xs={12} md={6}>
+            <Col md={6}>
               <Form.Label>Application Deadline</Form.Label>
               <Form.Control
+                style={inputStyle}
                 type="date"
                 name="applicationDeadline"
                 value={jobData.applicationDeadline}
@@ -144,6 +219,7 @@ const CreateJobModal = ({ show, handleClose }) => {
           <Form.Group className="mb-3">
             <Form.Label>Job Description</Form.Label>
             <Form.Control
+              style={textAreaStyle}
               as="textarea"
               rows={3}
               name="jobDescription"
@@ -156,6 +232,7 @@ const CreateJobModal = ({ show, handleClose }) => {
           <Form.Group className="mb-4">
             <Form.Label>Company Logo URL (Optional)</Form.Label>
             <Form.Control
+              style={inputStyle}
               type="text"
               name="imageUrl"
               value={jobData.imageUrl}
@@ -164,17 +241,14 @@ const CreateJobModal = ({ show, handleClose }) => {
             />
           </Form.Group>
 
-          <div className="d-flex flex-column flex-md-row justify-content-between gap-2">
-            <Button variant="outline-dark" className="rounded-pill px-4 w-100 w-md-auto">
-              Save Draft ⌄
-            </Button>
-            <Button
-              variant="primary"
-              className="rounded-pill px-4 w-100 w-md-auto"
-              onClick={handleSubmit}
-            >
-              Publish &raquo;
-            </Button>
+          <div style={{ display: 'flex', gap: '16px', marginTop: '32px' }}>
+            <button style={saveDraftButtonStyle} type="button">
+              Save Draft <span>⬇</span>
+            </button>
+
+            <button style={publishButtonStyle} onClick={handleSubmit} type="button">
+              Publish <span>»</span>
+            </button>
           </div>
         </Form>
       </Modal.Body>
