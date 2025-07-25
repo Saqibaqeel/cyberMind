@@ -84,10 +84,22 @@ const JobFilter = () => {
       <div className="vr d-none d-md-block" />
 
       {/* 💰 Salary Range */}
-<div className="salary-range-container" style={{  }}>
-  <label className="range-label" style={{fontFamily:'satoshi variable' ,fontWeight:'600',fontSize:'16px'}}>
-    Salary Per Month ₹ <span>50k to 80k</span>
+<div className="salary-range-container">
+  <label
+    className="range-label"
+    style={{
+      fontFamily: 'Satoshi Variable, sans-serif',
+      fontWeight: '500',
+      fontSize: '16px',
+      display: 'flex',
+      justifyContent: 'space-between',
+      width: '100%', // makes it stretch across the container
+    }}
+  >
+    <span>Salary Per Month </span>
+    <span>₹50k - ₹80k</span>
   </label>
+
   <input
     type="range"
     min="50"
@@ -97,12 +109,16 @@ const JobFilter = () => {
     className="fa-range"
     style={{
       accentColor: 'black',
-      width: '200px', // Adjust width as needed
-      height: '0px',
-      border: '2px solid rgba(34, 34, 34, 1)' // Adjust height as needed
+      width: '100%',
+      height: '4px',
+      backgroundColor: '#eee',
+      border: 'none',
+      borderRadius: '4px',
+      marginTop: '8px',
     }}
   />
 </div>
+
 
     </div>
   );

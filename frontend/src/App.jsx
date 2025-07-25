@@ -7,6 +7,7 @@ import CreateJobModal from './pages/CreateJobModal'
 import React, { useState } from 'react';
 import { Toaster } from 'react-hot-toast';
 import Form from './componenets/Form'
+import './index.css'
 
 function App() {
   const [showModal, setShowModal] = useState(false);

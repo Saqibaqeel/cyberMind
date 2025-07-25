@@ -1,3 +1,16 @@
+
+:root {
+  --font-satoshi: 'Satoshi Variable', system-ui, sans-serif !important;
+}
+
+/* apply everywhere _text_ inherits from body */
+/* html, body, p, h1, h2, h3, h4, h5, h6, span, div, a, li, button, input, label ,span, textarea {
+  font-family: var(--font-satoshi) !important;
+} */
+
+
+
+
 .salary-range-container {
   width: 220px;
   display: flex;
