@@ -23,9 +23,10 @@ app.use(cookieParser());
 
  
 app.use(cors({
-  origin: 'https://cybermind-1-18ce.onrender.com/',  // <-- your React/Vite URL
-  credentials: true,                // <-- allow cookies & auth headers
+  origin: 'https://cybermind-1-18ce.onrender.com',  // no trailing slash
+  credentials: true,
 }));
+
 
 
 app.use('/job',jobRoutes);
