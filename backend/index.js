@@ -23,7 +23,7 @@ app.use(cookieParser());
 
  
 app.use(cors({
-  origin: 'http://localhost:5173',  // <-- your React/Vite URL
+  origin: 'https://cybermind-1-18ce.onrender.com/',  // <-- your React/Vite URL
   credentials: true,                // <-- allow cookies & auth headers
 }));
 
